@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>{% block page_title %}{% trans "Project Name" %}{% endblock %}</title>
+	<title>{% block page_title %}{% endblock %}</title>
 	<meta name="description" content="{% block meta_description %}{% endblock %}" />
 	<meta name="author" content="{% block meta_author %}{% endblock %}" />
 
@@ -22,13 +22,13 @@
 <body class="{% block body_class %}{% endblock %}">
 {% block body %}
 <header>
-
+    {% block header %}{% endblock header %}
 </header>
 <div role="main">
     {% block content %}{% endblock content %}
 </div>
 <footer>
-
+    {% block footer %}{% endblock footer %}
 </footer>
 
 {% block javascript_library %}
