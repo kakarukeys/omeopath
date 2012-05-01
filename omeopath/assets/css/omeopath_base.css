@@ -1,0 +1,20 @@
+body {
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #181B20;
+}
+
+header {
+    margin: 5px 0px;
+}
+
+#logo h1 {
+    letter-spacing: -5px;
+    font-size: 80px;
+}
+
+#logo p {
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+}
+
