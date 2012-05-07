@@ -9,12 +9,35 @@ header {
 }
 
 #logo h1 {
-    letter-spacing: -5px;
-    font-size: 80px;
+    letter-spacing: -2px;
+    font-size: 35px;
 }
 
 #logo p {
     font-family: 'Abel', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.slides_container {
+    padding: 60px;
+    margin-bottom: 30px;
+    background-color: #F0E2F0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.slides_container h1 {
+    margin-bottom: 0;
+    font-size: 40px;
+    line-height: 1;
+    color: inherit;
+    letter-spacing: -1px;
+}
+
+.slides_container p, .slides_container ul li {
+  font-size: 16px;
+  line-height: 27px;
+  color: inherit;
 }
 
