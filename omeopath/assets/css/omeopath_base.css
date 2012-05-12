@@ -20,7 +20,6 @@ header {
 
 .slides_container {
     padding: 60px;
-    margin-bottom: 30px;
     background-color: #F0E2F0;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -36,8 +35,18 @@ header {
 }
 
 .slides_container p, .slides_container ul li {
-  font-size: 16px;
-  line-height: 27px;
-  color: inherit;
+    font-size: 16px;
+    line-height: 27px;
+    color: inherit;
+}
+
+img.divider {
+    display: block;
+    margin: 20px auto;
+}
+
+h2 {
+    border-bottom: 1px dotted #999;
+    margin-bottom: 20px;
 }
 
