@@ -1,0 +1,25 @@
+{% extends "omeopath_base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+{% include "coming_soon/slideshow.html" %}
+    
+    <img src="{{ STATIC_URL }}img/coming_soon/divider.png" alt="_" class="divider" height="70" weight="70" />
+    
+{% include "coming_soon/central_portion.html" %}
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{{ STATIC_URL }}js/libs/slides.jquery.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#slides").slides({
+            currentClass: "active",
+            generatePagination: false
+        });
+    });
+</script>
+{% endblock %}
+

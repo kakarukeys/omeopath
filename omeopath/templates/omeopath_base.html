@@ -4,41 +4,41 @@
 {% block page_title %}{% trans "Omeopath - medicine, natural remedies and information sharing for GERD" %}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/omeopath_base.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/omeopath_base.css" />
 {% endblock %}
 
 {% block header %}
-<div class="container">
-    <div class="row">
-        <div class="span2">
-            <img src="{{ STATIC_URL }}img/logo_small.png" alt="Logo"/>
+    <div class="container">
+        <div class="row">
+            <div class="span2">
+                <img src="{{ STATIC_URL }}img/logo_small.png" alt="Logo"/>
+            </div>
+            <div class="span9" id="logo">
+                <br /><br /><br />
+                <h1>Omeopath</h1>
+                <p>Personalize your treatment for chronic illness.</p>
+            </div>
         </div>
-        <div class="span9" id="logo">
-            <br /><br /><br />
-            <h1>Omeopath</h1>
-            <p>Personalize your treatment for chronic illness.</p>
-        </div>
-    </div>
-    
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="#">GERD</a>
-                <div class="nav-collapse pull-right">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
+        
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="#">GERD</a>
+                    <div class="nav-collapse pull-right">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock header %}
 
 {% block footer %}
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
 {% endblock footer %}
 
