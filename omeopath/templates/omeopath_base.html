@@ -37,8 +37,19 @@
 {% endblock header %}
 
 {% block footer %}
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <div id="footer_band">
+        <div class="container">
+            <div class="row">
+                <div class="span1 offset5">
+                    <img src="{{ STATIC_URL }}img/logo_small_embossed.png" />
+                </div>
+                <div class="span3">
+                    <h2>Contact</h2>
+                    <p>Email us at kakarukeys ~[at]~  gmail.com</p>
+                </div>
+            </div>
+            <div id="footer_last_message"><p>&copy; <em>Omeopath.com</em> All rights reserved.</p></div>
+        </div>
+    </div>
 {% endblock footer %}
 

@@ -20,6 +20,26 @@ header {
     font-size: 14px;
 }
 
+footer .container {
+    color: #A0A0A0;
+    padding: 20px 0;
+}
+
+footer h2 {
+    font-size: 16px;
+}
+
+#footer_band {
+    background-color: #2F3739;
+    margin: 20px 0;
+    border-top:1px solid green;
+    border-bottom:1px solid green;
+}
+
+#footer_last_message {
+    text-align:center;
+}
+
 /* coming_soon */
 
 .slides_container {
@@ -54,7 +74,7 @@ img.divider {
     margin: 20px auto;
 }
 
-h2 {
+.intro_box h2 {
     border-bottom: 1px dotted #999;
     margin-bottom: 20px;
 }
