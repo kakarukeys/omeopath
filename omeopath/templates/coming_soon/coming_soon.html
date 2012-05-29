@@ -13,18 +13,42 @@
 
 {% block javascript %}
 <script src="{{ STATIC_URL }}js/libs/slides.jquery.js"></script>
+<script src="{{ STATIC_URL }}js/notification_signup.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $("#slides").slides({
-            currentClass: "active",
-            generatePagination: false
-        });
+    $("#slides").slides({
+        currentClass: "active",
+        generatePagination: false
     });
     
     //send feedback button in the slideshow is same as the right feedback button
     $("#btn_feedback").click(function() {
         $("#uvTabLabel").click();
     });
+    
+    nsjs.submit_button_sel.click(function() {
+        var msg_html = nsjs.validate();
+        if (msg_html) {
+            nsjs.show_error(msg_html);
+        } else {
+            var name = prompt("May I know your name?", "Harry Potter");
+            if (name != null) {
+                nsjs.disable_input();
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url notification_signup %}",
+                    data: {
+                        "name": name,
+                        "email": nsjs.get_email_input(),
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: nsjs.ajax_success,
+                    error: nsjs.ajax_error
+                });
+            }
+        }
+        return false;
+    });
+    
 </script>
 {% endblock %}
 

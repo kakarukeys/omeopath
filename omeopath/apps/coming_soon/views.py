@@ -1,7 +1,17 @@
-from django.shortcuts import render_to_response
+from django.views.generic.edit import BaseCreateView
+from django.http import HttpResponse
+from models import Prospect
 
 # Create your views here.
 
-def coming_soon(request):
-    return render_to_response('coming_soon.html')
+class CreateProspect(BaseCreateView):
+    """View for notification signup function"""
+    model = Prospect
     
+    def form_invalid(self, form):
+        return HttpResponse(form.errors.as_ul())
+        
+    def form_valid(self, form):
+        self.object = form.save()
+        return HttpResponse(status=201)
+        
