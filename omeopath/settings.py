@@ -98,6 +98,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'south',
     'omeopath.apps.coming_soon',
+    'paypal.standard.ipn',
+    'paypal.standard.pdt',
 )
 
 # A sample logging configuration. The only tangible logging
