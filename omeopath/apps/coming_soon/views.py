@@ -10,6 +10,7 @@ from models import Prospect
 from forms import DonationForm
 
 BOOK_NAME = "50 Things About GERD Your Doctor Did Not Tell You"
+BOOK_PRICE = "35.00"    #USD
 
 # Create your views here.
 
@@ -36,10 +37,9 @@ class ComingSoon(TemplateView):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "item_name": BOOK_NAME,
-            "invoice": "GB-00009",
-            "amount": "35.00",
+            "amount": BOOK_PRICE,
             "notify_url": get_url("paypal-ipn"),
-            "return_url": get_url("paypal-pdt"),
+            "return_url": get_url("payment_was_successful"),
             "cancel_return": get_url("coming_soon"),
         }
         form = DonationForm(initial=paypal_dict)

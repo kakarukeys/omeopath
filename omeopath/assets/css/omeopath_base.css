@@ -40,6 +40,10 @@ footer h2 {
     text-align:center;
 }
 
+.flat_page {
+    min-height: 400px;
+}
+
 /* coming_soon */
 
 .slides_container {

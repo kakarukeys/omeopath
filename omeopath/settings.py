@@ -110,16 +110,30 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+    },
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+            '()': 'django.utils.log.RequireDebugFalse',
         }
     },
     'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': False,
         }
     },
     'loggers': {
@@ -142,8 +156,8 @@ except ImportError:
         import sys
         sys.stderr.write( "local settings not available\n" )
 else:
-    try:
-        INSTALLED_APPS += LOCAL_INSTALLED_APPS
-    except NameError:
-        pass
-        
+    INSTALLED_APPS += LOCAL_INSTALLED_APPS
+    MIDDLEWARE_CLASSES += LOCAL_MIDDLEWARE_CLASSES
+    LOGGING['handlers'].update(LOCAL_LOGGING_HANDLERS)
+    LOGGING['loggers'].update(LOCAL_LOGGERS)
+    

@@ -1,0 +1,30 @@
+{% extends "omeopath_base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container flat_page">
+{% if pdt_obj.st == "SUCCESS" %}
+    <p><strong>Dear {{ pdt_obj.first_name }} {{ pdt_obj.last_name }},</strong></p>
+    <br />
+    <p>Thank you for your generous donation of {{ pdt_obj.mc_currency }} {{ pdt_obj.mc_gross }} to Omeopath project which will help many GERD patients in the world.</p>
+    <br />
+    <p>You may download the e-book <a href="#">here</a>.</p>
+    <p>You may share the e-book with anyone. However, we would appreciate if you do not post the e-book for online download.</p>
+    <p>A confirmation email together with the e-book have also been sent to <em>{{ pdt_obj.payer_email }}</em>.</p>
+    <br />
+    <p>Your contribution will be funneled into financing our website development.</p>
+    <p>You will also be notified, when the site launches successfully, due to your help!</p>
+{% else %}
+    <p>Hi,<p>
+    <br />
+    <p>Due to some technicalities, the transaction was not completed.</p>
+    <p>We have been notified and will look into the issue as soon as possible.</p>
+    <p>You may try again some time later.</p>
+    <p>Sorry for any inconvenience caused.</p>
+{% endif %}
+    <br />
+    <p>Yours sincerely,</p>
+    <p>Jiang</p>
+</div>
+{% endblock content %}
+

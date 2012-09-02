@@ -12,8 +12,8 @@ urlpatterns = patterns('',
     url(r'^gerd/notification_signup/$', coming_soon.CreateProspect.as_view(), name="notification_signup"),
     
     # Book checkout via Paypal
-    url(r'^gerd/bpwxcwfxk/', include('paypal.standard.ipn.urls')),
-    url(r'^gerd/payment_was_successful/', include('paypal.standard.pdt.urls')),
+    url(r'^gerd/bpwxcwfxk/$', include('paypal.standard.ipn.urls')),
+    url(r'^gerd/payment_was_successful/$', 'paypal.standard.pdt.views.pdt', {"template": "coming_soon/payment_was_successful.html"}, name="payment_was_successful"),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
