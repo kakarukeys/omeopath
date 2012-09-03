@@ -1,16 +1,15 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
+import time
 from django.test import TestCase
+import timestamp_encoder as edr
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+unix_time, code = (1346710595.9632721, "psjhfpzdud")
+
+class TimestampEncoderTest(TestCase):
+    def test_encode(self):
+        self.assertEqual(edr.encode(unix_time), code)
+        self.assertEqual(edr.encode(), edr.encode(time.time())) #test argument default
+        
+    def test_decode(self):
+        self.assertEqual(edr.decode(code), int(unix_time))
+        
