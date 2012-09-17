@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # Coming soon page
     url(r'^gerd/$', coming_soon.ComingSoon.as_view(), name="coming_soon"),
     url(r'^gerd/notification_signup/$', coming_soon.CreateProspect.as_view(), name="notification_signup"),
+    url(r'^gerd/download/ebook/(?P<expired_at>[a-z]{10})/$', coming_soon.DownloadEbook.as_view()),
     
     # Book checkout via Paypal
     url(r'^gerd/bpwxcwfxk/$', include('paypal.standard.ipn.urls')),
