@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from django.views.generic.base import View
 
 from paypal.standard.ipn.signals import payment_was_successful
+from paypal.standard.pdt.views import pdt
 
 import timestamp_encoder
 
@@ -16,8 +17,9 @@ from forms import DonationForm
 
 
 BOOK_NAME = "50 Things About GERD Your Doctor Did Not Tell You"
+BOOK_FILENAME = "50-things-about-gerd.pdf"
 BOOK_PRICE = "35.00"    #USD
-BOOK_LOCATION = "/srv/django/50-things-about-gerd.pdf"
+BOOK_LOCATION = "/srv/django/" + BOOK_FILENAME
 
 # Create your views here.
 
@@ -55,31 +57,43 @@ class ComingSoon(TemplateView):
         return context
         
 class DownloadEbook(View):
-    def get(request, *args, **kwargs):
+    def get(self, request, expired_at, filename):
         """
-        decode the expired_at url variable:
-        can't decode: return 404
+        check the filename and decode the expired_at url variable:
+        incorrect filename or can't decode: return 404
         if the time now has passed the expiration time: return 410
-        otherwise, return the pdf file.
+        otherwise, return the file.
         """
-        try:
-            expired_at = timestamp_encoder.decode(kwargs["expired_at"])
-        except ValueError:
-            if settings.DEBUG:
-                raise
-            else:
-                raise Http404()
+        if filename != BOOK_FILENAME:
+            raise Http404()
         else:
-            if expired_at > int(time.time()):
-                with open(BOOK_LOCATION, 'rb') as f:
-                    content = f.read()
-                    
-                response = HttpResponse(content, mimetype="application/pdf")
-                response["Content-Disposition"] = "attachment; filename=filename.pdf"
-                return response
+            try:
+                expired_at = timestamp_encoder.decode(expired_at)
+            except ValueError:
+                if settings.DEBUG:
+                    raise
+                else:
+                    raise Http404()
             else:
-                return HttpResponseGone()
-                
+                if expired_at > int(time.time()):
+                    with open(BOOK_LOCATION, 'rb') as f:
+                        content = f.read()
+                        
+                    response = HttpResponse(content, mimetype="application/pdf")
+                    response["Content-Disposition"] = "attachment; filename=" + BOOK_FILENAME
+                    return response
+                else:
+                    return HttpResponseGone()
+                    
+class PaymentWasSuccessful(View):
+    """Extend the default pdt view to add an ebook download link"""
+    
+    def get(self, request):
+        expired_at = time.time() + 600  #link expires in 600s
+        expired_at_code = timestamp_encoder.encode(expired_at)
+        context = {"expired_at": expired_at_code, "filename": BOOK_FILENAME}
+        return pdt(request, template="coming_soon/payment_was_successful.html", context=context)
+        
 def act_after_receiving_payment(sender, **kwargs):
     """stub"""
     print "hahaha in signal"      

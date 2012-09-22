@@ -1,6 +1,11 @@
 {% extends "omeopath_base.html" %}
 {% load i18n %}
 
+{% block css %}
+{{ block.super }}
+        <meta http-equiv="refresh" content="5; url={% url download_ebook expired_at filename %}" />
+{% endblock %}
+
 {% block content %}
 <div class="container flat_page">
 {% if pdt_obj.st == "SUCCESS" %}
@@ -8,7 +13,9 @@
     <br />
     <p>Thank you for your generous donation of {{ pdt_obj.mc_currency }} {{ pdt_obj.mc_gross }} to Omeopath project which will help many GERD patients in the world.</p>
     <br />
-    <p>You may download the e-book <a href="#">here</a>.</p>
+    <p>You may download the e-book <a href="{% url download_ebook expired_at filename %}">here</a>.</p>
+    <p>(Automatically start downloading in 5 seconds......)</p>
+    <br />
     <p>You may share the e-book with anyone. However, we would appreciate if you do not post the e-book for online download.</p>
     <p>A confirmation email together with the e-book have also been sent to <em>{{ pdt_obj.payer_email }}</em>.</p>
     <br />
